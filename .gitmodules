@@ -1,3 +1,6 @@
 [submodule "deck"]
 	path = deck
 	url = https://github.com/imakewebthings/deck.js.git
+[submodule "extensions/automatic"]
+	path = extensions/automatic
+	url = https://github.com/rchampourlier/deck.automatic.js.git

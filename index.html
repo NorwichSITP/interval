@@ -29,7 +29,7 @@
     <body class="deck-container">
 
         <section class="slide">
-            <h1>TEST</h1>
+            <h1>Welcome to Norwich Skeptics in the Pub!</h1>
         </section>
 
         <section class="slide">
@@ -55,11 +55,18 @@
         <script src="deck/core/deck.core.js"></script>
         <script src="deck/extensions/menu/deck.menu.js"></script>
         <script src="deck/extensions/hash/deck.hash.js"></script>
+        <script src="extensions/automatic/automatic/deck.automatic.js"></script>
 
         <!-- Specific to this page -->
         <script type="text/javascript">
             $(function() {
                 // Deck initialization
+                $.extend(true, $.deck.defaults, {
+                    automatic: {
+                    startRunning: true,
+                    cycle: true,
+                    slideDuration: 5000
+                }});
                 $.deck('.slide');
 
                 var FEED_URL = 'http://www.google.com/calendar/feeds/infloaq9qd28h3qo3ksv2voig4%40group.calendar.google.com/public/full?alt=json-in-script&orderby=starttime&max-results=15&singleevents=true&sortorder=ascending&futureevents=true&callback=?';
