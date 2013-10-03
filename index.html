@@ -21,6 +21,34 @@
         <link rel="stylesheet" href="deck/themes/style/swiss.css">
         <link rel="stylesheet" href="deck/themes/transition/horizontal-slide.css">
 
+        <!-- This Page -->
+        <style>
+
+            .social-list {
+                list-style-type:none;
+            }
+
+            .social-list a {
+                background-repeat: no-repeat;
+                background-size: 100px;
+                display: block;
+                height: 100px;
+                line-height: 100px;
+                padding-left: 120px;
+            }
+
+            .twitter {
+                background-image: url('/media/twitter.png');
+            }
+
+            .googleplus {
+                background-image: url('/media/googleplus.png');
+            }
+
+            .facebook {
+                background-image: url('/media/facebook.png');
+            }
+
         </style>
 
         <script src="deck/modernizr.custom.js"></script>
@@ -30,6 +58,14 @@
 
         <section class="slide">
             <h1>Welcome to Norwich Skeptics in the Pub!</h1>
+        </section>
+
+        <section class="slide">
+            <ul class="social-list">
+                <li><a class="twitter" href="https://twitter.com/norwichsitp">@NorwichSITP</a></li>
+                <li><a class="googleplus" href="https://plus.google.com/109980410390439679097">Norwich Skeptics in the Pub</a></li>
+                <li><a class="facebook" href="http://www.facebook.com/groups/NorwichSkeptics">Norwich Skeptics</a></li>
+            </ul>
         </section>
 
         <section class="slide">
@@ -65,7 +101,7 @@
                     automatic: {
                     startRunning: true,
                     cycle: true,
-                    slideDuration: 5000
+                    slideDuration: 10000
                 }});
                 $.deck('.slide');
 
