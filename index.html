@@ -64,7 +64,7 @@
             <ul class="social-list">
                 <li><a class="twitter" href="https://twitter.com/norwichsitp">@NorwichSITP</a></li>
                 <li><a class="googleplus" href="https://plus.google.com/109980410390439679097">Norwich Skeptics in the Pub</a></li>
-                <li><a class="facebook" href="http://www.facebook.com/groups/NorwichSkeptics">Norwich Skeptics</a></li>
+                <li><a class="facebook" href="http://www.facebook.com/groups/NorwichSkeptics">facebook.com/group/NorwichSkeptics</a></li>
             </ul>
         </section>
 
@@ -72,16 +72,6 @@
             <ul id="upcoming-events-list">
             </ul>
         </section>
-
-        <section class="slide">
-            <object type="application/x-shockwave-flash" data="http://boxcar2d.com/swf/boxcar2d.v3.2.swf" width="800" height="600">
-            <param name="quality" value="high">
-            <param name="wmode" value="opaque">
-            <param name="swfversion" value="6.0.65.0">
-            </object>
-        </section>
-
-        <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
 
         <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -107,7 +97,6 @@
 
                 var FEED_URL = 'http://www.google.com/calendar/feeds/infloaq9qd28h3qo3ksv2voig4%40group.calendar.google.com/public/full?alt=json-in-script&orderby=starttime&max-results=15&singleevents=true&sortorder=ascending&futureevents=true&callback=?';
                 $.getJSON(FEED_URL, function (json) {
-                    console.log(json);
                     var eventList = $('#upcoming-events-list');
                     $.each(json.feed.entry,function(i,entry) {
                         var eventDate = new Date(entry['gd$when'][0].startTime);
