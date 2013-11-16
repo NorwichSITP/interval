@@ -1,0 +1,176 @@
+@import '../../../../deck/themes/style/reset';
+
+@mixin border-radius($r) {
+    -webkit-border-radius:$r;
+    -moz-border-radius:$r;
+    border-radius:$r;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:300,500);
+
+
+h1, h2 {
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 4em;
+    border-bottom-color: #fff;
+    padding-top:0;
+}
+
+h3 {
+    color:#888;
+}
+
+pre {
+    border-color:#ccc;
+}
+
+code {
+    color:#888;
+}
+
+blockquote {
+    font-size:2em;
+    font-style:italic;
+    padding:1em 2em;
+    color:#000;
+    border-left:5px solid #ccc;
+
+    p {
+        margin:0;
+    }
+
+    cite {
+        font-size:.5em;
+        font-style:normal;
+        font-weight:bold;
+        color:#888;
+    }
+}
+
+::-moz-selection{ background:#c00; color:#fff; }
+::selection { background:#c00; color:#fff; }
+
+a {
+    &, &:hover, &:focus, &:active, &:visited {
+        color:#c00;
+        text-decoration:none;
+    }
+
+    &:hover, &:focus {
+        text-decoration:underline;
+    }
+}
+
+.deck-container {
+    color: #fff;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.75em;
+    background: #fff;
+    background: url(../img/beer.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    > .slide {
+        padding:0 48px;
+    }
+}
+
+.slide {
+    .deck-before, .deck-previous {
+        opacity:0.4;
+
+        &:not(.deck-child-current) {
+                .deck-before, .deck-previous {
+                    opacity:1;
+            }
+        }
+    }
+
+    .deck-child-current {
+        opacity:1;
+    }
+}
+
+.deck-prev-link, .deck-next-link {
+    background:#ccc;
+    font-family:serif;
+
+    &, &:hover, &:focus, &:active, &:visited {
+        color:#fff;
+    }
+
+    &:hover, &:focus {
+        background:#c00;
+        text-decoration:none;
+    }
+}
+
+.deck-status {
+    font-size:0.6666em;
+}
+
+.deck-menu {
+    .slide {
+        background:#eee;
+    }
+
+    .deck-current, .no-touch & .slide:hover {
+        background:#ddf;
+    }
+}
+
+
+
+
+
+
+
+// 
+// 
+// .deck-container {
+// 	color:#ccc;
+// 	font-family: "Roboto", sans-serif;
+// 	font-weight: normal;
+// 	font-size:187.5%;
+//     text-shadow:-1px -1px -1px rgba(0,0,0,.5);
+// 	width:100%;
+// 	padding:0;
+//    
+//     background-image: linear-gradient(left top, rgba(255,255,255,.2) 0%, rgba(255,255,255, 0) 100%), url(../img/beer.jpg);
+//     background-image: -o-linear-gradient(left top, rgba(255,255,255,.2) 0%, rgba(255,255,255,0) 100%), url(../img/beer.jpg);
+//     background-image: -moz-linear-gradient(left top, rgba(255,255,255,.2) 0%, rgba(255,255,255,0) 100%), url(../img/beer.jpg);
+//     background-image: -webkit-linear-gradient(left top, rgba(255,255,255,.2) 0%, rgba(255,255,255,0) 100%), url(../img/beer.jpg);
+//     background-image: -ms-linear-gradient(left top, rgba(255,255,255,.2) 0%, rgba(255,255,255,0) 100%), url(../img/beer.jpg);
+//     background-image: -webkit-gradient(
+//         linear,
+//         left top,
+//         right bottom,
+//         color-stop(0, rgba(255,255,255,.2)),
+//         color-stop(1, rgba(255,255,255,0))
+//     ), url(../img/beer.jpg);
+//     
+// 	h1, h2 {
+// 	    padding: 0.5em;
+// 	    margin:0;
+// 	    border:0;
+// 	    text-align:center;
+//         position: absolute;
+//         left: 0;
+//         right: 0;
+//         top: 50%;
+// 	
+// 	    font-weight:500;
+// 		font-size:2.66em;
+// 
+// 
+// 	}
+//     
+// 
+// 	
+// }
