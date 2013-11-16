@@ -56,20 +56,15 @@
 
     <body class="deck-container">
 
-        <section class="slide">
+        <section class="slide" id="title">
             <h1>Welcome to Norwich Skeptics in the Pub!</h1>
         </section>
 
-        <section class="slide">
+        <section class="slide" id="social">
             <ul class="social-list">
                 <li><a class="twitter" href="https://twitter.com/norwichsitp">@NorwichSITP</a></li>
                 <li><a class="googleplus" href="https://plus.google.com/109980410390439679097">Norwich Skeptics in the Pub</a></li>
                 <li><a class="facebook" href="http://www.facebook.com/groups/NorwichSkeptics">facebook.com/group/NorwichSkeptics</a></li>
-            </ul>
-        </section>
-
-        <section class="slide">
-            <ul id="upcoming-events-list">
             </ul>
         </section>
 
@@ -86,30 +81,35 @@
         <!-- Specific to this page -->
         <script type="text/javascript">
             $(function() {
+
+
+                var FEED_URL = 'http://www.google.com/calendar/feeds/infloaq9qd28h3qo3ksv2voig4%40group.calendar.google.com/public/full?alt=json-in-script&orderby=starttime&max-results=15&singleevents=true&sortorder=ascending&futureevents=true&callback=?';
+                $.getJSON(FEED_URL, function (json) {
+                    var social = $('#social');
+                    $.each(json.feed.entry,function(i,entry) {
+                        var eventDate = new Date(entry['gd$when'][0].startTime);
+                        var eventLocation = entry['gd$where'][0].valueString;
+
+                        $('<section class="slide" />')
+                            .html(
+                                '<h2>Upcoming Events</h2>' +
+                                eventDate.toDateString() + ': ' +
+                                entry.title['$t'] + ' @ ' +
+                                eventLocation +
+                                '<img src="http://maps.googleapis.com/maps/api/staticmap?center=' + escape(eventLocation) + '&zoom=14&size=400x400&sensor=false&markers=' + escape(eventLocation) + '&visual_refresh=true" />')
+                            .insertAfter(social);
+                    });
                 // Deck initialization
                 $.extend(true, $.deck.defaults, {
                     automatic: {
-                    startRunning: true,
+                    startRunning: false,
                     cycle: true,
                     slideDuration: 10000
                 }});
                 $.deck('.slide');
 
-                var FEED_URL = 'http://www.google.com/calendar/feeds/infloaq9qd28h3qo3ksv2voig4%40group.calendar.google.com/public/full?alt=json-in-script&orderby=starttime&max-results=15&singleevents=true&sortorder=ascending&futureevents=true&callback=?';
-                $.getJSON(FEED_URL, function (json) {
-                    var eventList = $('#upcoming-events-list');
-                    $.each(json.feed.entry,function(i,entry) {
-                        var eventDate = new Date(entry['gd$when'][0].startTime);
-                        $('<li>')
-                            .html(
-                                eventDate.toDateString() + ': ' +
-                                entry.title['$t'] + ' @ ' +
-                                entry['gd$where'][0].valueString)
-                            .appendTo(eventList);
-                    });
+
                 });
-
-
 
             });
         </script>
