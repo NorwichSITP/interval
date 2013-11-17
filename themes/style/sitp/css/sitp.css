@@ -237,12 +237,23 @@ li {
   box-sizing: border-box;
   width: 100%; }
 
+@font-face {
+  font-family: 'League Gothic';
+  font-weight: normal;
+  font-style: normal;
+  src: url("../font/leaguegothic-regular-webfont.ttf"); }
+
 h1, h2 {
-  font-weight: 500;
+  font-family: "League Gothic", sans-serif;
+  font-weight: normal;
+  font-style: normal;
   text-transform: uppercase; }
 
+h1 {
+  font-size: 6em; }
+
 h2 {
-  font-size: 4em;
+  font-size: 5em;
   border-bottom-color: #fff;
   padding-top: 0; }
 
