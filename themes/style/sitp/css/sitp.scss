@@ -15,7 +15,8 @@
     src: url("../font/leaguegothic-regular-webfont.ttf");
 }
 
-h1, h2 {
+h1, h2, h3 {
+    color: #fff;
     font-family: "League Gothic", sans-serif;
     font-weight: normal;
     font-style: normal;
@@ -29,11 +30,12 @@ h1 {
 h2 {
     font-size: 5em;
     border-bottom-color: #fff;
-    padding-top:0;
+    margin: 0;
+    padding: 0;
 }
 
 h3 {
-    color:#888;
+    font-size: 3em;
 }
 
 pre {

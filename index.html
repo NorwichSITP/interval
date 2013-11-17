@@ -55,6 +55,39 @@
                 border-radius: 5px;
             }
 
+            .event-header {
+                background-color: rgba(0,0,0,0.5);
+                overflow: auto;
+                padding: 1em;
+            }
+           
+            .event-header .event-img{
+                float: left;
+                width: 300px;
+                margin: 0 1em 0 0;
+            }
+
+            .event-header .event-location {
+                background-color: rgba(0,0,0,0.5);
+                float:right;
+                margin: 0 0 0 1em;
+                width: 400px;
+                text-align:center;
+                padding: 20px;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
+            }
+
+            .event-header .event-map {
+                margin: 1em 0 0 0;
+            }
+
+            .event-header .event-time {
+                font-weight: 300;
+                font-size: 2em;
+                text-align:center;
+            }
 
         </style>
 
@@ -75,9 +108,28 @@
             </ul>
         </section>
 
-        <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+        <script type="text/template" id="event-template">
+            <section class="slide">
+                <h2>Upcoming Events</h2>
+                <div class="event-header">
+                    <div class="event-location">
+                        {2}
+                        <img class="event-map" src="http://maps.googleapis.com/maps/api/staticmap?center={3}&markers={3}&zoom=14&size=400x400&sensor=false&visual_refresh=true" />
+                    </div>
+                    <img class="event-img" src="{4}" />
+                    <div>
+                        <h3>{0}</h3>
+                        <div class="event-time">{1}</div>
+                    </div>
+                </div>
+            </section>
+        </script>
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="deck/jquery-1.7.2.min.js"><\/script>')</script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+            google.load('search', '1');
+        </script>
 
         <!-- Deck Core and extensions -->
         <script src="deck/core/deck.core.js"></script>
@@ -85,36 +137,72 @@
         <script src="deck/extensions/hash/deck.hash.js"></script>
         <script src="extensions/automatic/automatic/deck.automatic.js"></script>
 
-        <!-- Specific to this page -->
         <script type="text/javascript">
+
+            String.prototype.format = function() {
+                var args = arguments;
+                return this.replace(/{(\d+)}/g, function(match, number) { 
+                    return typeof args[number] != 'undefined'
+                    ? args[number]
+                    : match
+                    ;
+                });
+            };
+
+            var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+
             $(function() {
+                var social = $('#social');
+                var eventTemplate = $('#event-template').html();
+                var imageSearch = new google.search.ImageSearch();
+                var events = new Array();
+                var searchComplete = function(searcher){
+                    data = events.shift();
+
+                    var dateStr = days[data.date.getDay()] + ' ' +
+                                data.date.getDate() + ' ' + 
+                                months[data.date.getMonth()] + ' ' +
+                                data.date.getFullYear() + ', ' +
+                                data.date.getHours() + ':' +
+                                data.date.getMinutes();
+
+                    var eventSlide = eventTemplate.format(data.title.replace('SitP Norwich - ', ''), dateStr, data.location.replace('\n', '<br />'), escape(data.location), searcher.results[0].unescapedUrl)
+                    social.after(eventSlide);
+                    if (events.length) {
+                        imageSearch.execute(events[0].title);
+                    } else {
+                        // Deck initialization
+                        $.extend(true, $.deck.defaults, {
+                            automatic: {
+                            startRunning: true,
+                            cycle: true,
+                            slideDuration: 10000
+                        }});
+                        $.deck('.slide');
+                    }
+                };
+
+                imageSearch.setSearchCompleteCallback(this, searchComplete, [imageSearch]);
 
 
                 var FEED_URL = 'http://www.google.com/calendar/feeds/infloaq9qd28h3qo3ksv2voig4%40group.calendar.google.com/public/full?alt=json-in-script&orderby=starttime&max-results=15&singleevents=true&sortorder=ascending&futureevents=true&callback=?';
                 $.getJSON(FEED_URL, function (json) {
-                    var social = $('#social');
+
                     $.each(json.feed.entry,function(i,entry) {
-                        var eventDate = new Date(entry['gd$when'][0].startTime);
-                        var eventLocation = entry['gd$where'][0].valueString;
+                        var eventData = {
+                            'title': entry.title['$t'],
+                            'date': new Date(entry['gd$when'][0].startTime),
+                            'location': entry['gd$where'][0].valueString
+                            };
+                        events.push(eventData);
 
-                        $('<section class="slide" />')
-                            .html(
-                                '<h2>Upcoming Events</h2>' +
-                                eventDate.toDateString() + ': ' +
-                                entry.title['$t'] + ' @ ' +
-                                eventLocation +
-                                '<img class="event-map" src="http://maps.googleapis.com/maps/api/staticmap?center=' + escape(eventLocation) + '&zoom=14&size=400x400&sensor=false&markers=' + escape(eventLocation) + '&visual_refresh=true" />')
-                            .insertAfter(social);
                     });
-                // Deck initialization
-                $.extend(true, $.deck.defaults, {
-                    automatic: {
-                    startRunning: true,
-                    cycle: true,
-                    slideDuration: 10000
-                }});
-                $.deck('.slide');
 
+                    if (events.length) {
+                        imageSearch.execute(events[0].title);
+                    };
 
                 });
 
