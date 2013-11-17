@@ -49,6 +49,13 @@
                 background-image: url('media/facebook.png');
             }
 
+            .event-map {
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
+            }
+
+
         </style>
 
         <script src="deck/modernizr.custom.js"></script>
@@ -96,7 +103,7 @@
                                 eventDate.toDateString() + ': ' +
                                 entry.title['$t'] + ' @ ' +
                                 eventLocation +
-                                '<img src="http://maps.googleapis.com/maps/api/staticmap?center=' + escape(eventLocation) + '&zoom=14&size=400x400&sensor=false&markers=' + escape(eventLocation) + '&visual_refresh=true" />')
+                                '<img class="event-map" src="http://maps.googleapis.com/maps/api/staticmap?center=' + escape(eventLocation) + '&zoom=14&size=400x400&sensor=false&markers=' + escape(eventLocation) + '&visual_refresh=true" />')
                             .insertAfter(social);
                     });
                 // Deck initialization
