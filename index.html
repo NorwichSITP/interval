@@ -99,6 +99,13 @@
                 text-align:center;
             }
 
+            #apod {
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+
         </style>
 
         <script src="deck/modernizr.custom.js"></script>
@@ -117,6 +124,9 @@
                 <li><a class="googleplus" href="https://plus.google.com/109980410390439679097">Norwich Skeptics in the Pub</a></li>
                 <li><a class="facebook" href="http://www.facebook.com/groups/NorwichSkeptics">facebook.com/group/NorwichSkeptics</a></li>
             </ul>
+        </section>
+
+        <section class="slide" id="apod">
         </section>
 
         <script type="text/template" id="event-template">
@@ -147,6 +157,7 @@
         <script src="deck/extensions/menu/deck.menu.js"></script>
         <script src="deck/extensions/hash/deck.hash.js"></script>
         <script src="extensions/automatic/automatic/deck.automatic.js"></script>
+        <script src="extensions/events/deck.events.js"></script>
 
         <script type="text/javascript">
 
@@ -161,45 +172,54 @@
             };
 
             var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-                months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 
             $(function() {
-                var social = $('#social');
-                var eventTemplate = $('#event-template').html();
-                var imageSearch = new google.search.ImageSearch();
-                var events = new Array();
-                var searchComplete = function(searcher){
+
+                var social = $('#social'),
+                    eventTemplate = $('#event-template').html(),
+                    events = new Array(),
+                    eventsGcalUrl = 'http://www.google.com/calendar/feeds/infloaq9qd28h3qo3ksv2voig4%40group.calendar.google.com/public/full?alt=json-in-script&orderby=starttime&max-results=15&singleevents=true&sortorder=ascending&futureevents=true&callback=?',
+                    imageSearch = new google.search.ImageSearch(),
+                    searchComplete = function(searcher){
+                        
                     data = events.shift();
 
-                    var dateStr = days[data.date.getDay()] + ' ' +
-                                data.date.getDate() + ' ' + 
-                                months[data.date.getMonth()] + ' ' +
-                                data.date.getFullYear() + ', ' +
-                                data.date.getHours() + ':' +
-                                data.date.getMinutes();
+                        var dateStr = days[data.date.getDay()] + ' ' +
+                                    data.date.getDate() + ' ' + 
+                                    months[data.date.getMonth()] + ' ' +
+                                    data.date.getFullYear() + ', ' +
+                                    data.date.getHours() + ':' +
+                                    data.date.getMinutes();
 
-                    var eventSlide = eventTemplate.format(data.title.replace('SitP Norwich - ', ''), dateStr, data.location.replace('\n', '<br />'), escape(data.location), searcher.results[0].unescapedUrl)
-                    social.after(eventSlide);
-                    if (events.length) {
-                        imageSearch.execute(events[0].title);
-                    } else {
-                        // Deck initialization
-                        $.extend(true, $.deck.defaults, {
-                            automatic: {
-                            startRunning: true,
-                            cycle: true,
-                            slideDuration: 10000
-                        }});
-                        $.deck('.slide');
-                    }
-                };
+                        var eventSlide = eventTemplate.format(
+                            data.title.replace('SitP Norwich - ', ''),
+                            dateStr,
+                            data.location.replace('\n', '<br />'),
+                            escape(data.location),
+                            searcher.results[0].unescapedUrl);
+
+                        social.after(eventSlide);
+
+                        if (events.length) {
+                            imageSearch.execute(events[0].title);
+                        } else {
+                            // Deck initialization
+                            $.extend(true, $.deck.defaults, {
+                                automatic: {
+                                startRunning: true,
+                                cycle: true,
+                                slideDuration: 10000
+                            }});
+                            $.deck('.slide');
+                        }
+                    };
 
                 imageSearch.setSearchCompleteCallback(this, searchComplete, [imageSearch]);
 
-
-                var FEED_URL = 'http://www.google.com/calendar/feeds/infloaq9qd28h3qo3ksv2voig4%40group.calendar.google.com/public/full?alt=json-in-script&orderby=starttime&max-results=15&singleevents=true&sortorder=ascending&futureevents=true&callback=?';
-                $.getJSON(FEED_URL, function (json) {
+                $.getJSON(eventsGcalUrl, function (json) {
 
                     $.each(json.feed.entry,function(i,entry) {
                         var eventData = {
@@ -214,6 +234,29 @@
                     if (events.length) {
                         imageSearch.execute(events[0].title);
                     };
+
+                });
+
+                var apods = new Array(),
+                    currentApod = 0,
+                    apodUrl = 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://www.acme.com/jef/apod/rss.xml&num=20&callback=?',
+                    apodSlide = $('#apod');
+
+                $.getJSON(apodUrl, function (json) {
+
+                    $.each(json.responseData.feed.entries, function(i, entry) {
+                        var img = $('img', $(entry.content));
+                        apods.push(img.first().attr('src'));
+                    });
+
+                    if (!apods.length) {
+                        apodSlide.remove();
+                    } else {
+                        apodSlide.bind('deck.becameNext', function(ev, direction) {
+                            apodSlide.css('background-image', 'url(' + apods[currentApod] +')');
+                            currentApod = (++currentApod) % apods.length;
+                        });
+                    }
 
                 });
 

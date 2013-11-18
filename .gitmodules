@@ -4,3 +4,6 @@
 [submodule "extensions/automatic"]
 	path = extensions/automatic
 	url = https://github.com/rchampourlier/deck.automatic.js.git
+[submodule "extensions/events"]
+	path = extensions/events
+	url = https://github.com/mikeharris100/deck.events.js.git
