@@ -69,8 +69,10 @@ blockquote {
 ::selection { background:#c00; color:#fff; }
 
 a {
+
+    color: #fff;
+
     &, &:hover, &:focus, &:active, &:visited {
-        color:#c00;
         text-decoration:none;
     }
 

@@ -26,6 +26,11 @@
 
             .social-list {
                 list-style-type:none;
+                font-size: 2em;
+            }
+
+            .social-list li:not(:first-of-type)  {
+                margin-top: 1em;
             }
 
             .social-list a {
@@ -49,21 +54,22 @@
                 background-image: url('media/facebook.png');
             }
 
-            .event-map {
-                -webkit-border-radius: 5px;
-                -moz-border-radius: 5px;
-                border-radius: 5px;
-            }
-
-            .event-header {
+            .content-box {
                 background-color: rgba(0,0,0,0.5);
                 overflow: auto;
+                margin: 0;
                 padding: 1em;
+                -webkit-border-bottom-left-radius: 5px;
+                -moz-border-radius-bottomleft: 5px;
+                border-bottom-left-radius: 5px;
+                -webkit-border-bottom-right-radius: 5px;
+                -moz-border-radius-bottomright: 5px;
+                border-bottom-right-radius: 5px;
             }
            
             .event-header .event-img{
                 float: left;
-                width: 300px;
+                width: 20%;
                 margin: 0 1em 0 0;
             }
 
@@ -71,7 +77,8 @@
                 background-color: rgba(0,0,0,0.5);
                 float:right;
                 margin: 0 0 0 1em;
-                width: 300px;
+                max-width: 300px;
+                width: 20%;
                 text-align:center;
                 padding: 20px;
                 -webkit-border-radius: 5px;
@@ -81,6 +88,9 @@
 
             .event-header .event-map {
                 margin: 1em 0 0 0;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
             }
 
             .event-header .event-time {
@@ -101,7 +111,8 @@
         </section>
 
         <section class="slide" id="social">
-            <ul class="social-list">
+            <h2>Find us...</h2>
+            <ul class="content-box social-list">
                 <li><a class="twitter" href="https://twitter.com/norwichsitp">@NorwichSITP</a></li>
                 <li><a class="googleplus" href="https://plus.google.com/109980410390439679097">Norwich Skeptics in the Pub</a></li>
                 <li><a class="facebook" href="http://www.facebook.com/groups/NorwichSkeptics">facebook.com/group/NorwichSkeptics</a></li>
@@ -111,7 +122,7 @@
         <script type="text/template" id="event-template">
             <section class="slide">
                 <h2>Upcoming Events</h2>
-                <div class="event-header">
+                <div class="content-box event-header">
                     <div class="event-location">
                         {2}
                         <img class="event-map" src="http://maps.googleapis.com/maps/api/staticmap?center={3}&markers={3}&zoom=14&size=300x300&sensor=false&visual_refresh=true" />

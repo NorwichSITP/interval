@@ -290,11 +290,12 @@ blockquote {
   background: #c00;
   color: #fff; }
 
-a, a:hover, a:focus, a:active, a:visited {
-  color: #c00;
-  text-decoration: none; }
-a:hover, a:focus {
-  text-decoration: underline; }
+a {
+  color: #fff; }
+  a, a:hover, a:focus, a:active, a:visited {
+    text-decoration: none; }
+  a:hover, a:focus {
+    text-decoration: underline; }
 
 .deck-container {
   color: #fff;
