@@ -57,7 +57,7 @@
             .content-box {
                 background-color: rgba(0,0,0,0.5);
                 overflow: auto;
-                margin: 0;
+                margin: 0 0 1em 0;
                 padding: 1em;
                 -webkit-border-bottom-left-radius: 5px;
                 -moz-border-radius-bottomleft: 5px;
@@ -67,13 +67,13 @@
                 border-bottom-right-radius: 5px;
             }
            
-            .event-header .event-img{
+            .event-img{
                 float: left;
                 width: 20%;
                 margin: 0 1em 0 0;
             }
 
-            .event-header .event-location {
+            .event-location {
                 background-color: rgba(0,0,0,0.5);
                 float:right;
                 margin: 0 0 0 1em;
@@ -86,17 +86,25 @@
                 border-radius: 5px;
             }
 
-            .event-header .event-map {
+            .event-map {
                 margin: 1em 0 0 0;
                 -webkit-border-radius: 5px;
                 -moz-border-radius: 5px;
                 border-radius: 5px;
             }
 
-            .event-header .event-time {
+            .event-time {
                 font-weight: 300;
                 font-size: 2em;
                 text-align:center;
+            }
+
+            .past-event .event-img {
+                width:10%;
+            }
+
+            .past-event h3{
+                font-size:2em;
             }
 
             #apod {
@@ -126,24 +134,45 @@
             </ul>
         </section>
 
+        <section class="slide" id="past-events">
+            <h2>Past Events</h2>
+        </section>
+
         <section class="slide" id="apod">
         </section>
 
-        <script type="text/template" id="event-template">
+        <script type="text/template" id="future-event-template">
             <section class="slide">
                 <h2>Upcoming Events</h2>
-                <div class="content-box event-header">
+                <div class="content-box">
                     <div class="event-location">
-                        {2}
-                        <img class="event-map" src="http://maps.googleapis.com/maps/api/staticmap?center={3}&markers={3}&zoom=14&size=300x300&sensor=false&visual_refresh=true" />
+                        {3}
+                        <img class="event-map" src="http://maps.googleapis.com/maps/api/staticmap?center={4}&markers={4}&zoom=14&size=300x300&sensor=false&visual_refresh=true" />
                     </div>
-                    <img class="event-img" src="{4}" />
+                    <img class="event-img" src="{1}" />
                     <div>
                         <h3>{0}</h3>
-                        <div class="event-time">{1}</div>
+                        <div class="event-time">{2}</div>
                     </div>
                 </div>
             </section>
+        </script>
+
+        <script type="text/template" id="todays-event-template">
+            <section class="slide">
+                <h2>Todays Event!</h2>
+                <div class="content-box">
+                    <img class="event-img" src="{1}" />
+                    <h3>{0}</h3>
+                </div>
+            </section>
+        </script>
+
+        <script type="text/template" id="past-event-template">
+            <div class="content-box past-event">
+                <img class="event-img" src="{1}" />
+                <h3>{0}</h3>
+            </div>
         </script>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -173,39 +202,104 @@
 
             var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
                 months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                dateToStr = function(dateObj) {
+                    // Formats a date as yyyy-mm-dd
+                    var year = dateObj.getFullYear(),
+                        month = dateObj.getMonth() + 1,
+                        day = dateObj.getDate();
 
+                    if (month < 10) { month = '0' + month; }
+                    if (day < 10) { day = '0' + day; }
+
+                    return year + '-' + month + '-' + day;
+                },
+                dateToStrHuman = function(dateObj) {
+                    // Human-readable date format
+                    return days[dateObj.getDay()] + ' ' + 
+                            dateObj.getDate() + ' ' + 
+                            months[dateObj.getMonth()] + ' ' +
+                            dateObj.getFullYear() + ', ' +
+                            dateObj.getHours() + ':' +
+                            dateObj.getMinutes();
+                },
+                dateDiff = function(date1, date2) {
+                    // Calculates the date difference, in days, between two
+                    // dates
+                    var time1 = Math.floor(date1.getTime() / 86400000), // 1000*60*60*24
+                        time2 = Math.floor(date2.getTime() / 86400000);
+
+                    return time2 - time1;
+                },
+                threeMonthsAgo = function(fromDate) {
+                    // Gets the date of the first of the month, 3 months prior
+                    // to the given date.
+                    var dd = new Date(fromDate);
+                    dd.setDate(1);
+                    dd.setMonth(dd.getMonth() - 3);
+                    return dd;
+                };
 
             $(function() {
 
-                var social = $('#social'),
-                    eventTemplate = $('#event-template').html(),
+                var today = new Date(),
+                    social = $('#social'),
+                    pastEvents = $('#past-events'),
+                    futureEventTemplate = $('#future-event-template').html(),
+                    todaysEventTemplate = $('#todays-event-template').html(),
+                    pastEventTemplate = $('#past-event-template').html(),
                     events = new Array(),
-                    eventsGcalUrl = 'http://www.google.com/calendar/feeds/infloaq9qd28h3qo3ksv2voig4%40group.calendar.google.com/public/full?alt=json-in-script&orderby=starttime&max-results=15&singleevents=true&sortorder=ascending&futureevents=true&callback=?',
+                    eventsGcalUrl = 'http://www.google.com/calendar/feeds/infloaq9qd28h3qo3ksv2voig4%40group.calendar.google.com/public/full?alt=json-in-script&orderby=starttime&singleevents=true&sortorder=ascending&start-min=' + dateToStr(threeMonthsAgo(today)) + '&fields=entry(title,gd:when,gd:where)&callback=?',
                     imageSearch = new google.search.ImageSearch(),
                     searchComplete = function(searcher){
                         
-                    data = events.shift();
+                        data = events.shift();
 
-                        var dateStr = days[data.date.getDay()] + ' ' +
-                                    data.date.getDate() + ' ' + 
-                                    months[data.date.getMonth()] + ' ' +
-                                    data.date.getFullYear() + ', ' +
-                                    data.date.getHours() + ':' +
-                                    data.date.getMinutes();
+                        var eventTitle = data.title.replace(
+                                            'SitP Norwich - ', ''),
+                            startTime = data.startTime,
+                            imageUrl = searcher.results[0].unescapedUrl;
 
-                        var eventSlide = eventTemplate.format(
-                            data.title.replace('SitP Norwich - ', ''),
-                            dateStr,
-                            data.location.replace('\n', '<br />'),
-                            escape(data.location),
-                            searcher.results[0].unescapedUrl);
+                        diff = dateDiff(today, startTime);
 
-                        social.after(eventSlide);
+                        if (diff > 0){  // Future event
+
+                            var eventSlide = futureEventTemplate.format(
+                                        eventTitle,
+                                        imageUrl,
+                                        dateToStrHuman(startTime),
+                                        data.location.replace('\n', '<br />'),
+                                        escape(data.location));
+
+                            // Keep future events in order
+                            pastEvents.before(eventSlide);
+
+                        } else if (diff < 0) {  // Past event
+
+                            var eventBox = pastEventTemplate.format(
+                                                eventTitle, imageUrl);
+
+                            // Do this instead of pastEvents.append to reverse
+                            // the order - most recent will be at top of slide
+                            $('h2', pastEvents).after(eventBox);
+
+                        } else {  // Today's event
+
+                            var eventSlide = todaysEventTemplate.format(
+                                                eventTitle, imageUrl);
+
+                            // Today's event should be before future / past 
+                            // events
+                            social.after(eventSlide);
+
+                        }
 
                         if (events.length) {
                             imageSearch.execute(events[0].title);
                         } else {
+                            if(!$('div', pastEvents).length){
+                                pastEvents.remove();
+                            }
                             // Deck initialization
                             $.extend(true, $.deck.defaults, {
                                 automatic: {
@@ -223,9 +317,9 @@
 
                     $.each(json.feed.entry,function(i,entry) {
                         var eventData = {
-                            'title': entry.title['$t'],
-                            'date': new Date(entry['gd$when'][0].startTime),
-                            'location': entry['gd$where'][0].valueString
+                            'title': entry.title.$t,
+                            'startTime': entry['gd$when'] ? new Date(entry['gd$when'][0].startTime) : null,
+                            'location': entry['gd$where'] ? entry['gd$where'][0].valueString : ''
                             };
                         events.push(eventData);
 
