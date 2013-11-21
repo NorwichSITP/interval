@@ -293,9 +293,18 @@
             $(function() {
 
                 $(document).bind('deck.init', function() {
+                    // So we can hide slides until they're all loaded
                     $('.slide').addClass('loaded');
                 });
                 
+                // Deck initialization
+                $.extend(true, $.deck.defaults, {
+                    automatic: {
+                    startRunning: true,
+                    cycle: true,
+                    slideDuration: 10000
+                }}); 
+
                 var today = new Date(),
                     social = $('#social'),
                     pastEvents = $('#past-events'),
@@ -307,6 +316,7 @@
                     imageSearch = new google.search.ImageSearch(),
                     searchComplete = function(searcher){
                         
+                        // Events should be in chronological order
                         data = events.shift();
 
                         var eventTitle = data.title.replace(
@@ -342,25 +352,25 @@
                             var eventSlide = todaysEventTemplate.format(
                                                 eventTitle, imageUrl);
 
-                            // Today's event should be before future / past 
-                            // events
+                            // "Today's event" slide should be before future / 
+                            // past events
                             social.after(eventSlide);
 
                         }
 
-                        if (events.length) {
+                        if (events.length) {  // Still more events to process
                             imageSearch.execute(events[0].title);
-                        } else {
+                        } else {  // Finish up
+                           
+                            // If no past events, remove empty slide
                             if(!$('div', pastEvents).length){
                                 pastEvents.remove();
                             }
-                            // Deck initialization
-                            $.extend(true, $.deck.defaults, {
-                                automatic: {
-                                startRunning: true,
-                                cycle: true,
-                                slideDuration: 10000
-                            }});
+
+                            // Limit to 3 past events
+                            pastEvents.children().slice(4).remove();
+
+                            // Start slides
                             $.deck('.slide');
                         }
                     };
@@ -380,8 +390,16 @@
                     });
 
                     if (events.length) {
+                        // Start processing events
                         imageSearch.execute(events[0].title);
-                    };
+                    } else {
+
+                        // No events, so can't be any past events
+                        pastEvents.remove();
+
+                        // Start slides
+                        $.deck('.slide');
+                    }
 
                 });
 
