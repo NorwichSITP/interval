@@ -119,7 +119,7 @@
             }
 
             .quote.sagan blockquote {
-                margin: 1em 400px 0 1em;
+                margin: 1em 400px 1em 1em;
             }
 
             .quote.randi {
@@ -136,6 +136,24 @@
                 top: 50%;
                 -webkit-transform: translate(0, -50%);
                 transform: translate(0, -50%);
+            }
+
+            .quote.asimov {
+                background: url(media/asimov.jpg) bottom right no-repeat, #000;
+            }
+
+            .quote.asimov blockquote {
+                margin: 1em 400px 1em 1em;
+            }
+
+            .quote.einstein {
+                background: url(media/einstein.jpg) bottom left no-repeat, #000;
+                -webkit-background-size: contain;
+                background-size: contain;
+            }
+
+            .quote.einstein blockquote {
+                margin: 1em 1em 1em 600px;
             }
 
             .slide:not(.loaded) {
@@ -188,6 +206,20 @@
             </blockquote>
         </section>
 
+        <section class="slide quote asimov">
+            <blockquote>
+                <p>I believe in evidence. I believe in observation, measurement, and reasoning, confirmed by independent observers. I'll believe anything, no matter how wild and ridiculous, if there is evidence for it. The wilder and more ridiculous something is, however, the firmer and more solid the evidence will have to be.</p>
+                <cite>Isaac Asimov</cite>
+            </blockquote>
+        </section>
+        
+       <section class="slide quote einstein">
+            <blockquote>
+                <p>Blind belief in authority is the greatest enemy of truth.</p>
+                <cite>Albert Einstein</cite>
+            </blockquote>
+        </section>
+       
         <section class="slide" id="apod">
         </section>
 
