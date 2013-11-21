@@ -1,4 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:300,500);
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400italic|Cinzel|Roboto:300,400);
 /* Resets and base styles from HTML5 Boilerplate */
 div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -270,18 +271,27 @@ code {
   color: #888; }
 
 blockquote {
+  display: inline-block;
   font-size: 2em;
-  font-style: italic;
-  padding: 1em 2em;
-  color: #000;
-  border-left: 5px solid #ccc; }
+  text-shadow: 0 0 10px #000; }
   blockquote p {
-    margin: 0; }
+    font-family: 'Droid Serif', serif;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: .5em; }
+    blockquote p:before {
+      content: "“"; }
+    blockquote p:after {
+      content: "”"; }
   blockquote cite {
-    font-size: .5em;
+    font-family: 'Cinzel', serif;
     font-style: normal;
-    font-weight: bold;
-    color: #888; }
+    font-weight: 400;
+    font-size: 0.6em;
+    color: #eee;
+    float: right; }
+    blockquote cite:before {
+      content: '- '; }
 
 ::-moz-selection {
   background: #c00;
@@ -300,6 +310,7 @@ a:hover, a:focus {
 .deck-container {
   color: #fff;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 1.75em;
   background: #fff;
   background: url(../img/beer.jpg) no-repeat center center fixed;

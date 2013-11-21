@@ -114,6 +114,31 @@
                 background-size: cover;
             }
 
+            .quote.sagan {
+                background: url(media/sagan.jpg) bottom right no-repeat, #000;
+            }
+
+            .quote.sagan blockquote {
+                margin: 1em 600px 0 1em;
+            }
+
+            .quote.randi {
+                background: url(media/randi.jpg) bottom right no-repeat, #000;
+                -webkit-background-size: contain;
+                background-size: contain;
+            }
+
+            .quote.randi blockquote {
+                margin: 1em;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 50%;
+                -webkit-transform: translate(0, -50%);
+                transform: translate(0, -50%);
+                
+            }
+
         </style>
 
         <script src="deck/modernizr.custom.js"></script>
@@ -136,6 +161,20 @@
 
         <section class="slide" id="past-events">
             <h2>Past Events</h2>
+        </section>
+
+        <section class="slide quote sagan">
+            <blockquote>
+                <p>You can get into a habit of thought in which you enjoy making fun of all those other people who don't see things as clearly as you do. We have to guard carefully against it.</p>
+                <cite>Carl Sagan</cite>
+            </blockquote>
+        </section>
+
+        <section class="slide quote randi">
+            <blockquote>
+                <p>Sir, there is a distinct difference between having an open mind and having a hole in your head from which your brain leaks out.</p>
+                <cite>James Randi</cite>
+            </blockquote>
         </section>
 
         <section class="slide" id="apod">
