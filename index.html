@@ -136,7 +136,18 @@
                 top: 50%;
                 -webkit-transform: translate(0, -50%);
                 transform: translate(0, -50%);
-                
+            }
+
+            .slide:not(.loaded) {
+                display:none;
+            }
+
+            #title{
+                display:block;
+            }
+            
+            #title:not(.loaded) h1 {
+                text-shadow: 0 0 10px #f00;
             }
 
         </style>
@@ -281,6 +292,10 @@
 
             $(function() {
 
+                $(document).bind('deck.init', function() {
+                    $('.slide').addClass('loaded');
+                });
+                
                 var today = new Date(),
                     social = $('#social'),
                     pastEvents = $('#past-events'),
