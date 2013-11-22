@@ -1,0 +1,176 @@
+@mixin border-radius($r) {
+    -moz-border-radius:$r;
+    -webkit-border-radius:$r;
+    border-radius:$r;
+}
+
+@mixin background-size($size) {
+    -moz-background-size: $size;
+    -o-background-size: $size;
+    -webkit-background-size: $size;
+    background-size: $size;
+}
+
+.content-box {
+    background-color: rgba(0,0,0,0.5);
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin: 0 0 1em 0;
+    overflow: auto;
+    padding: 1em;
+}
+
+.slide:not(.loaded) {
+    display:none;
+}
+
+#title{
+
+    display:block;
+
+    &:not(.loaded) {
+        h1 {
+            text-shadow: 0 0 10px #f00;
+        }
+    }
+
+}
+
+.social-list {
+
+    font-size: 2em;
+    list-style-type:none;
+
+    li  {
+        margin: 0;
+    }
+
+    a {
+        background-repeat: no-repeat;
+        background-size: 100px;
+        display: block;
+        height: 100px;
+        line-height: 100px;
+        padding-left: 120px;
+    }
+}
+
+.twitter {
+    background-image: url('../img/twitter.png');
+}
+
+.googleplus {
+    background-image: url('../img/googleplus.png');
+}
+
+.facebook {
+    background-image: url('../img/facebook.png');
+}
+
+.www {
+    background-image: url('../img/www.png');
+}
+
+.event-img{
+    float: left;
+    margin: 0 1em 0 0;
+    width: 20%;
+}
+
+.event-location {
+    background-color: rgba(0,0,0,0.5);
+    @include border-radius(5px);
+    float:right;
+    margin: 0 0 0 1em;
+    max-width: 300px;
+    padding: 20px;
+    text-align:center;
+    width: 20%;
+}
+
+.event-map {
+    @include border-radius(5px);
+    margin: 1em 0 0 0;
+}
+
+.event-time {
+    font-size: 2em;
+    font-weight: 300;
+    text-align:center;
+}
+
+.past-event {
+
+    .event-img {
+        width:10%;
+    }
+
+    h3{
+        font-size:2em;
+    }
+
+}
+
+#apod {
+    @include background-size(cover);
+}
+
+.longquote {
+    font-size: 0.8em;
+}
+
+.quote {
+    
+    &.sagan {
+        
+        background: url(../img/sagan.jpg) bottom right no-repeat, #000;
+     
+        blockquote {
+            margin: 1em 400px 1em 1em;
+        }
+    
+    }
+
+    &.randi {
+
+        background: url(../img/randi.jpg) bottom right no-repeat, #000;
+        @include background-size(contain);
+
+        blockquote {
+            left: 0;
+            margin: 1em;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+        }
+
+    }
+
+    &.asimov {
+    
+        background: url(../img/asimov.jpg) bottom right no-repeat, #000;
+    
+        blockquote {
+            margin: 1em 400px 1em 1em;
+        }
+
+    }
+
+    &.einstein {
+        
+        background: url(../img/einstein.jpg) bottom left no-repeat, #000;
+        @include background-size(contain);
+
+        blockquote {
+            margin: 1em 1em 1em 600px;
+        }
+
+    }
+
+}

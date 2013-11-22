@@ -1,0 +1,117 @@
+.content-box {
+  background-color: rgba(0, 0, 0, 0.5);
+  -moz-border-radius-bottomleft: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin: 0 0 1em 0;
+  overflow: auto;
+  padding: 1em; }
+
+.slide:not(.loaded) {
+  display: none; }
+
+#title {
+  display: block; }
+  #title:not(.loaded) h1 {
+    text-shadow: 0 0 10px #f00; }
+
+.social-list {
+  font-size: 2em;
+  list-style-type: none; }
+  .social-list li {
+    margin: 0; }
+  .social-list a {
+    background-repeat: no-repeat;
+    background-size: 100px;
+    display: block;
+    height: 100px;
+    line-height: 100px;
+    padding-left: 120px; }
+
+.twitter {
+  background-image: url("../img/twitter.png"); }
+
+.googleplus {
+  background-image: url("../img/googleplus.png"); }
+
+.facebook {
+  background-image: url("../img/facebook.png"); }
+
+.www {
+  background-image: url("../img/www.png"); }
+
+.event-img {
+  float: left;
+  margin: 0 1em 0 0;
+  width: 20%; }
+
+.event-location {
+  background-color: rgba(0, 0, 0, 0.5);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  float: right;
+  margin: 0 0 0 1em;
+  max-width: 300px;
+  padding: 20px;
+  text-align: center;
+  width: 20%; }
+
+.event-map {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin: 1em 0 0 0; }
+
+.event-time {
+  font-size: 2em;
+  font-weight: 300;
+  text-align: center; }
+
+.past-event .event-img {
+  width: 10%; }
+.past-event h3 {
+  font-size: 2em; }
+
+#apod {
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover; }
+
+.longquote {
+  font-size: 0.8em; }
+
+.quote.sagan {
+  background: url(../img/sagan.jpg) bottom right no-repeat, black; }
+  .quote.sagan blockquote {
+    margin: 1em 400px 1em 1em; }
+.quote.randi {
+  background: url(../img/randi.jpg) bottom right no-repeat, black;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  -webkit-background-size: contain;
+  background-size: contain; }
+  .quote.randi blockquote {
+    left: 0;
+    margin: 1em;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%); }
+.quote.asimov {
+  background: url(../img/asimov.jpg) bottom right no-repeat, black; }
+  .quote.asimov blockquote {
+    margin: 1em 400px 1em 1em; }
+.quote.einstein {
+  background: url(../img/einstein.jpg) bottom left no-repeat, black;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  -webkit-background-size: contain;
+  background-size: contain; }
+  .quote.einstein blockquote {
+    margin: 1em 1em 1em 600px; }
