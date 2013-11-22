@@ -259,7 +259,9 @@ h2 {
   font-size: 5em;
   border-bottom-color: #fff;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  background: url(../img/NorwichSITP.svg) center right no-repeat;
+  background-size: auto 1em; }
 
 h3 {
   font-size: 3em; }
