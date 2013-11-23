@@ -43,6 +43,12 @@ var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         dd.setDate(1);
         dd.setMonth(dd.getMonth() - 3);
         return dd;
+    },
+    getUrlParam = function(key) {
+        key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&");
+        var match = location.search.match(new RegExp("[?&]" + key +
+                    "=([^&]+)(&|[$/])"));
+        return match && decodeURIComponent(match[1].replace(/\+/g, " "));
     };
 
 $(function() {
@@ -55,7 +61,7 @@ $(function() {
     // Deck initialization
     $.extend(true, $.deck.defaults, {
         automatic: {
-            startRunning: true,
+            startRunning: getUrlParam('auto') != 'false',
             cycle: true,
             slideDuration: 10000
         }
