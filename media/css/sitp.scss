@@ -79,15 +79,16 @@
 
 .event-img{
     float: left;
-    margin: 0 1em 0 0;
+    margin: 0;
     width: 20%;
 }
 
 .event-location {
     background-color: rgba(0,0,0,0.5);
     @include border-radius(5px);
+    font-size: 0.8em;
     float:right;
-    margin: 0 0 0 1em;
+    margin: 0;
     max-width: 300px;
     padding: 20px;
     text-align:center;
@@ -99,10 +100,17 @@
     margin: 1em 0 0 0;
 }
 
-.event-time {
-    font-size: 2em;
-    font-weight: 300;
-    text-align:center;
+.event-description {
+
+    margin: 0 20%;
+    padding: 0 1em;
+
+    .event-time {
+        font-size: 2em;
+        font-weight: 300;
+        text-align:center;
+    }
+
 }
 
 .past-event {
