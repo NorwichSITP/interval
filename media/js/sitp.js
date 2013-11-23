@@ -113,7 +113,8 @@ String.prototype.format = function() {
                                 eventTitle,
                                 imageUrl,
                                 dateToStrHuman(startTime),
-                                data.location.replace('\n', '<br />'),
+                                data.location.replace(/(\r\n|\n|\r)/g,
+                                                      '<br />'),
                                 escape(data.location));
 
                     // Keep future events in order
