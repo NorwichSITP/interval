@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono);
 .content-box {
   background-color: rgba(0, 0, 0, 0.5);
   -moz-border-radius-bottomleft: 5px;
@@ -115,3 +116,11 @@
   background-size: contain; }
   .quote.einstein blockquote {
     margin: 1em 1em 1em 600px; }
+
+.sof {
+  font-size: 1.1em; }
+  .sof a {
+    font-family: 'Ubuntu Mono', sans-serif;
+    display: block;
+    text-align: center;
+    text-decoration: underline; }

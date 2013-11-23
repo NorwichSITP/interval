@@ -61,7 +61,7 @@ String.prototype.format = function() {
         });
         
 
-        var thingsToComplete = 2,  // events, apod
+        var thingsToComplete = 3,  // events, apod, sof
             thingCompleted = function(logMessage) {
                 
                 if(logMessage) {
@@ -210,6 +210,37 @@ String.prototype.format = function() {
            thingCompleted('APOD'); 
 
         });
+
+
+        // SCIENCE OR FICTION ==================================================
+        var gSheetId = '0Ah6N8zTBBmsmdE02ZXM2NHpNTmFZYWkydXdhYV9Jb3c',
+            sofTemplate = $('#sof-template').html(),
+            instructionsTemplate = $('#sof-instructions-template').html(),
+            answersTemplate = $('#sof-answers-template').html(),
+            lastQuote = $('.quote').last(),
+            insertAfter = lastQuote;
+
+        gSheet(gSheetId, function(rows){
+
+            // Remove first two items - 0th item will always be empty because
+            // Gsheets is 1-indexed, and the 1st item is the column headings
+            rows.splice(0, 2);
+
+            rows.map(function(row){
+                var sofSlide = $(sofTemplate.format(row.A, row.B));
+                insertAfter.after(sofSlide);
+                insertAfter = sofSlide;
+            });
+
+            if (rows.length){
+                lastQuote.after(instructionsTemplate);
+                insertAfter.after(answersTemplate);
+            }
+
+            thingCompleted('SOF'); 
+
+        });
+
 
     });
 })(jQuery, 'deck');

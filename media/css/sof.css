@@ -1,0 +1,9 @@
+.sof-answer {
+  font-size: 2em;
+  margin: 1em;
+  text-align: center;
+  text-transform: uppercase; }
+  .sof-answer:before {
+    content: '...'; }
+  .sof-answer:after {
+    content: '!'; }
