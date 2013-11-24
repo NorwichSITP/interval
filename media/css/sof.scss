@@ -1,15 +1,81 @@
-.sof-answer {
-   
-    font-size: 2em;
-    margin: 1em;
-    text-align: center;
-    text-transform: uppercase;
+.sof-answer-box {
+    $height: 80px;
+    $width: 400px;
 
-    &:before {
-        content: '...';
+    height: $height;
+    margin: 1em auto;
+    perspective: 1000;
+    position: relative;
+    width: $width;
+
+    & > div {
+        position: relative;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+        transform-origin: 100% $height/2; /* half of height */
+        -webkit-transform-origin: 100% $height/2; /* half of height */
+        transition: 0.6s;
+        -webkit-transition: 0.6s;
     }
 
-    &:after {
-        content: '!';
+    &:hover > div, &.hover > div {
+        transform: rotateX(-180deg);
+        -webkit-transform: rotateX(-180deg);
     }
- }
+
+    .sof-answer-reveal, .sof-answer {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        height: $height;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: $width;
+    }
+
+    .sof-answer-reveal {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid #fff;
+        line-height: $height;
+        text-align: center;
+        z-index: 2;
+    }
+
+    .sof-answer {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid #fff;
+        font-size: 40px;
+        line-height: $height;
+        text-align: center;
+        text-transform: uppercase;
+        transform: rotateX(180deg);
+        -webkit-transform: rotateX(180deg);
+
+        &:before {
+            content: '...';
+        }
+
+        &:after {
+            content: '!';
+        }
+
+        &.science {
+            background: rgba(0, 204, 0, 0.2);
+            border: 1px solid #0c0;
+        }
+
+        &.fiction {
+            background: rgba(204, 0, 0, 0.2);
+            border: 1px solid #c00;
+        }
+
+    }
+
+}
+
+
+
+
+
+
+

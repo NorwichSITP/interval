@@ -22,7 +22,16 @@
             <div class="content-box">
                 <h3>{0}</h3>
                 {1}
-                <div class="sof-answer">{2}</a>
+                <div class="sof-answer-box" ontouchstart="this.classList.toggle('hover');">
+                    <div>
+                        <div class="sof-answer-reveal">
+                            Reveal answer
+                        </div>
+                        <div class="sof-answer {2}">
+                            {2}
+                        </div>
+                    </div>
+                </div>
             </div>
         </script>
 
