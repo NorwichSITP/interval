@@ -1,10 +1,11 @@
-.sof-answer-box {
+.sof-answer-box .sof-answer-card {
+  display: block;
   height: 80px;
   margin: 1em auto;
   perspective: 1000;
   position: relative;
   width: 400px; }
-  .sof-answer-box > div {
+  .sof-answer-box .sof-answer-card > div {
     position: relative;
     transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
@@ -14,10 +15,7 @@
     /* half of height */
     transition: 0.6s;
     -webkit-transition: 0.6s; }
-  .sof-answer-box:hover > div, .sof-answer-box.hover > div {
-    transform: rotateX(-180deg);
-    -webkit-transform: rotateX(-180deg); }
-  .sof-answer-box .sof-answer-reveal, .sof-answer-box .sof-answer {
+  .sof-answer-box .sof-answer-card .sof-answer-reveal, .sof-answer-box .sof-answer-card .sof-answer {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     height: 80px;
@@ -25,13 +23,13 @@
     position: absolute;
     top: 0;
     width: 400px; }
-  .sof-answer-box .sof-answer-reveal {
+  .sof-answer-box .sof-answer-card .sof-answer-reveal {
     background: rgba(0, 0, 0, 0.2);
     border: 1px solid #fff;
     line-height: 80px;
     text-align: center;
     z-index: 2; }
-  .sof-answer-box .sof-answer {
+  .sof-answer-box .sof-answer-card .sof-answer {
     background: rgba(0, 0, 0, 0.2);
     border: 1px solid #fff;
     font-size: 40px;
@@ -40,13 +38,32 @@
     text-transform: uppercase;
     transform: rotateX(180deg);
     -webkit-transform: rotateX(180deg); }
-    .sof-answer-box .sof-answer:before {
+    .sof-answer-box .sof-answer-card .sof-answer:before {
       content: '...'; }
-    .sof-answer-box .sof-answer:after {
+    .sof-answer-box .sof-answer-card .sof-answer:after {
       content: '!'; }
-    .sof-answer-box .sof-answer.science {
+    .sof-answer-box .sof-answer-card .sof-answer.science {
       background: rgba(0, 204, 0, 0.2);
       border: 1px solid #0c0; }
-    .sof-answer-box .sof-answer.fiction {
+    .sof-answer-box .sof-answer-card .sof-answer.fiction {
       background: rgba(204, 0, 0, 0.2);
       border: 1px solid #c00; }
+.sof-answer-box .sof-answer-explanation {
+  background-color: rgba(0, 0, 0, 0.5);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  font-size: .8em;
+  height: auto;
+  max-height: 999px;
+  overflow: hidden;
+  transition: opacity 1s, max-height 1s;
+  -webkit-transition: opacity 1s, max-height 1s; }
+  .sof-answer-box .sof-answer-explanation p {
+    padding: 1em; }
+.sof-answer-box:not(.revealed) .sof-answer-explanation {
+  max-height: 0;
+  opacity: 0; }
+.sof-answer-box.revealed .sof-answer-card > div {
+  transform: rotateX(-180deg);
+  -webkit-transform: rotateX(-180deg); }
