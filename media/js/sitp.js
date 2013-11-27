@@ -75,7 +75,7 @@ String.prototype.format = function() {
                         automatic: {
                             startRunning: getUrlParam('auto') != 'false',
                             cycle: true,
-                            slideDuration: 10000
+                            slideDuration: 30000
                         }
                     });
 
