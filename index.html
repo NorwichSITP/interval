@@ -108,13 +108,14 @@
                 <h2>Upcoming Events</h2>
                 <div class="content-box">
                     <div class="event-location">
-                        {3}
-                        <img class="event-map" src="http://maps.googleapis.com/maps/api/staticmap?center={4}&markers={4}&zoom=14&size=300x300&sensor=false&visual_refresh=true" />
+                        {4}
+                        <img class="event-map" src="http://maps.googleapis.com/maps/api/staticmap?center={5}&markers={5}&zoom=14&size=300x300&sensor=false&visual_refresh=true" />
                     </div>
-                    <img class="event-img" src="{1}" />
+                    <img class="event-img" src="{2}" />
                     <div class="event-description">
                         <h3>{0}</h3>
-                        <div class="event-time">{2}</div>
+                        <h4>{1}</h4>
+                        <div class="event-time">{3}</div>
                     </div>
                 </div>
             </section>
@@ -124,16 +125,22 @@
             <section class="slide">
                 <h2>Todays Event!</h2>
                 <div class="content-box">
-                    <img class="event-img" src="{1}" />
-                    <h3>{0}</h3>
+                    <img class="event-img" src="{2}" />
+                    <div class="event-description">
+                        <h3>{0}</h3>
+                        <h4>{1}</h4>
+                    </div>
                 </div>
             </section>
         </script>
 
         <script type="text/template" id="past-event-template">
             <div class="content-box past-event">
-                <img class="event-img" src="{1}" />
-                <h3>{0}</h3>
+                <img class="event-img" src="{2}" />
+                <div class="event-description">
+                    <h3>{0}</h3>
+                    <h4>{1}</h4>
+                </div>
             </div>
         </script>
 

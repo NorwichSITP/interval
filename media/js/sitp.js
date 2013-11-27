@@ -102,7 +102,10 @@ String.prototype.format = function() {
                 // Events should be in chronological order
                 data = events.shift();
 
-                var eventTitle = data.title.replace('SitP Norwich - ', ''),
+                var titleData = data.title.replace('SitP Norwich - ', '')
+                                          .split(':'),
+                    speakerName = titleData[0].trim(),
+                    eventTitle = titleData.slice(1).join(':').trim(),
                     startTime = data.startTime,
                     imageUrl = searcher.results[0].unescapedUrl;
 
@@ -111,6 +114,7 @@ String.prototype.format = function() {
                 if (diff > 0){  // Future event
 
                     var eventSlide = futureEventTemplate.format(
+                                speakerName,  
                                 eventTitle,
                                 imageUrl,
                                 dateToStrHuman(startTime),
@@ -123,7 +127,8 @@ String.prototype.format = function() {
 
                 } else if (diff < 0) {  // Past event
 
-                    var eventBox = pastEventTemplate.format(eventTitle, imageUrl);
+                    var eventBox = pastEventTemplate.format(
+                            speakerName, eventTitle, imageUrl);
 
                     // Do this instead of pastEvents.append to reverse
                     // the order - most recent will be at top of slide
@@ -132,7 +137,7 @@ String.prototype.format = function() {
                 } else {  // Today's event
 
                     var eventSlide = todaysEventTemplate.format(
-                                        eventTitle, imageUrl);
+                                        speakerName, eventTitle, imageUrl);
 
                     // "Today's event" slide should be before future / 
                     // past events
