@@ -1,3 +1,6 @@
+.deck-container {
+  overflow: auto; }
+
 .sof-answer-box .sof-answer-card {
   display: block;
   height: 80px;

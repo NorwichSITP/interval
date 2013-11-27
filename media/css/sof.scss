@@ -4,7 +4,9 @@
     border-radius:$r;
 }
 
-
+.deck-container {
+    overflow: auto;
+}
 
 .sof-answer-box {
 
