@@ -204,7 +204,9 @@ String.prototype.format = function() {
 
             $.each(json.responseData.feed.entries, function(i, entry) {
                 var img = $('img', $(entry.content));
-                apods.push(img.first().attr('src'));
+                if (img.length && img.attr('src')) {
+                    apods.push(img.first().attr('src'));
+                }
             });
 
             if (!apods.length) {
