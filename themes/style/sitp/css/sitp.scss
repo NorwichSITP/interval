@@ -20,7 +20,6 @@ html {
 }
 
 h1, h2, h3 {
-    color: #fff;
     font-family: "League Gothic", sans-serif;
     font-weight: normal;
     font-style: normal;
@@ -39,14 +38,19 @@ h2 {
     padding: 0;
     
     &:not(.long) {
-        padding: 0 2.6em 0 0;
+        padding: 0 38rem 0 0;
         background: url(../img/NorwichSITP.svg) center right no-repeat;
-        background-size: auto 1em;
+        background-size: auto 14rem;
     }
 }
 
 h3 {
     font-size: 8rem;
+}
+
+h4 {
+    font-size: 5rem;
+    font-weight: 400;
 }
 
 pre {
@@ -68,7 +72,7 @@ blockquote {
         font-family: 'Droid Serif', serif;
         font-weight: 400;
         font-style:italic;
-        margin-bottom: .5em;
+        margin-bottom: 2.5rem;
 
         &:before {
             content:"“";
@@ -114,7 +118,7 @@ a {
     color: #fff;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
-    font-size: 3rem;
+    font-size: 3.5rem;
     background: #fff;
     background: url(../img/beer.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
