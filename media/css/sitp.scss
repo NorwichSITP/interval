@@ -44,7 +44,7 @@
 
 .social-list {
 
-    font-size: 2em;
+    font-size: 5rem;
     list-style-type:none;
 
     li  {
@@ -86,7 +86,6 @@
 .event-location {
     background-color: rgba(0,0,0,0.5);
     @include border-radius(5px);
-    font-size: 0.8em;
     float:right;
     margin: 0;
     max-width: 300px;
@@ -106,7 +105,7 @@
     padding: 0 1em;
 
     .event-time {
-        font-size: 2em;
+        font-size: 5rem;
         font-weight: 300;
         text-align:center;
     }
@@ -121,7 +120,7 @@
     }
 
     h3{
-        font-size:2em;
+        font-size:5rem;
     }
 
 }
@@ -131,7 +130,7 @@
 }
 
 .longquote {
-    font-size: 0.8em;
+    font-size: 4rem;
 }
 
 .quote {
@@ -187,8 +186,6 @@
 }
 
 .sof {
-
-    font-size: 1.1em;
 
     a {
 

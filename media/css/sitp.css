@@ -20,7 +20,7 @@
     text-shadow: 0 0 10px #f00; }
 
 .social-list {
-  font-size: 2em;
+  font-size: 5rem;
   list-style-type: none; }
   .social-list li {
     margin: 0; }
@@ -54,7 +54,6 @@
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  font-size: 0.8em;
   float: right;
   margin: 0;
   max-width: 300px;
@@ -72,7 +71,7 @@
   margin: 0 20%;
   padding: 0 1em; }
   .event-description .event-time {
-    font-size: 2em;
+    font-size: 5rem;
     font-weight: 300;
     text-align: center; }
 
@@ -80,7 +79,7 @@
   width: 10%;
   margin-right: 1em; }
 .past-event h3 {
-  font-size: 2em; }
+  font-size: 5rem; }
 
 #apod {
   -moz-background-size: cover;
@@ -89,7 +88,7 @@
   background-size: cover; }
 
 .longquote {
-  font-size: 0.8em; }
+  font-size: 4rem; }
 
 .quote.sagan {
   background: url(../img/sagan.jpg) bottom right no-repeat, black; }
@@ -122,10 +121,8 @@
   .quote.einstein blockquote {
     margin: 1em 1em 1em 600px; }
 
-.sof {
-  font-size: 1.1em; }
-  .sof a {
-    font-family: 'Ubuntu Mono', sans-serif;
-    display: block;
-    text-align: center;
-    text-decoration: underline; }
+.sof a {
+  font-family: 'Ubuntu Mono', sans-serif;
+  display: block;
+  text-align: center;
+  text-decoration: underline; }
