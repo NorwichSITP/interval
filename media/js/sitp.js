@@ -87,7 +87,8 @@ String.prototype.format = function() {
 
         // EVENTS ==============================================================
 
-        var today = new Date(),
+        var todayParam = getUrlParam('today'),
+            today = todayParam ? new Date(todayParam) : new Date(),
             social = $('#social'),
             pastEvents = $('#past-events'),
             futureEventTemplate = $('#future-event-template').html(),
@@ -155,6 +156,8 @@ String.prototype.format = function() {
 
                 }
             };
+
+        console.log('TODAY: ' + dateToStr(today));
 
         imageSearch.setSearchCompleteCallback(this, searchComplete, [imageSearch]);
 
