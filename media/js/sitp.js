@@ -102,46 +102,52 @@ String.prototype.format = function() {
                 // Events should be in chronological order
                 data = events.shift();
 
-                var titleData = data.title.replace('SitP Norwich - ', '')
-                                          .split(':'),
-                    speakerName = titleData[0].trim(),
-                    eventTitle = titleData.slice(1).join(':').trim(),
-                    startTime = data.startTime,
-                    imageUrl = searcher.results[0].unescapedUrl;
+                // Newly-added events might not have been indexed yet, so skip 
+                // them instead of risking using images from other sites.
+                if (searcher.results.length) {
 
-                diff = dateDiff(today, startTime);
+                    var titleData = data.title.replace('SitP Norwich - ', '')
+                                            .split(':'),
+                        speakerName = titleData[0].trim(),
+                        eventTitle = titleData.slice(1).join(':').trim(),
+                        startTime = data.startTime,
+                        imageUrl = searcher.results[0].unescapedUrl;
 
-                if (diff > 0){  // Future event
+                    diff = dateDiff(today, startTime);
 
-                    var eventSlide = futureEventTemplate.format(
-                                speakerName,  
-                                eventTitle,
-                                imageUrl,
-                                dateToStrHuman(startTime),
-                                data.location.replace(/(\r\n|\n|\r)/g,
-                                                      '<br />'),
-                                escape(data.location));
+                    if (diff > 0){  // Future event
 
-                    // Keep future events in order
-                    pastEvents.before(eventSlide);
+                        var eventSlide = futureEventTemplate.format(
+                                    speakerName,  
+                                    eventTitle,
+                                    imageUrl,
+                                    dateToStrHuman(startTime),
+                                    data.location.replace(/(\r\n|\n|\r)/g,
+                                                        '<br />'),
+                                    escape(data.location));
 
-                } else if (diff < 0) {  // Past event
+                        // Keep future events in order
+                        pastEvents.before(eventSlide);
 
-                    var eventBox = pastEventTemplate.format(
-                            speakerName, eventTitle, imageUrl);
+                    } else if (diff < 0) {  // Past event
 
-                    // Do this instead of pastEvents.append to reverse
-                    // the order - most recent will be at top of slide
-                    $('h2', pastEvents).after(eventBox);
+                        var eventBox = pastEventTemplate.format(
+                                speakerName, eventTitle, imageUrl);
 
-                } else {  // Today's event
+                        // Do this instead of pastEvents.append to reverse
+                        // the order - most recent will be at top of slide
+                        $('h2', pastEvents).after(eventBox);
 
-                    var eventSlide = todaysEventTemplate.format(
-                                        speakerName, eventTitle, imageUrl);
+                    } else {  // Today's event
 
-                    // "Today's event" slide should be before future / 
-                    // past events
-                    social.after(eventSlide);
+                        var eventSlide = todaysEventTemplate.format(
+                                            speakerName, eventTitle, imageUrl);
+
+                        // "Today's event" slide should be before future / 
+                        // past events
+                        social.after(eventSlide);
+
+                    }
 
                 }
 
@@ -164,6 +170,9 @@ String.prototype.format = function() {
 
         console.log('TODAY: ' + dateToStr(today));
 
+        imageSearch.setNoHtmlGeneration();
+        imageSearch.setResultSetSize(1);
+        imageSearch.setSiteRestriction('norwich.skepticsinthepub.org');
         imageSearch.setSearchCompleteCallback(this, searchComplete, [imageSearch]);
 
         $.getJSON(eventsGcalUrl, function (json) {
