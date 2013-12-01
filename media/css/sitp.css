@@ -143,3 +143,21 @@
   .sof a img {
     height: 50rem;
     width: 50rem; }
+
+#tweetbox {
+  background: rgba(0, 0, 0, 0.9);
+  border-top: 1px solid #fff;
+  bottom: 0;
+  display: none;
+  height: 12rem;
+  padding: 2rem;
+  position: fixed;
+  width: 100%;
+  z-index: 10; }
+  #tweetbox img {
+    float: left;
+    height: 12rem;
+    margin: 0;
+    margin-right: 2rem; }
+  #tweetbox p {
+    margin: 0; }

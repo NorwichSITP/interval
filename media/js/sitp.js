@@ -262,6 +262,41 @@ String.prototype.format = function() {
         });
 
 
+        // TWEETS ==============================================================
+        var userKey = 'TmBELpRE1fSw',
+            tweetTemplate = $('#tweet-template').html(),
+            tweetBox = $('#tweetbox'),
+            tweetList = new Array();
+
+        tweetStream(userKey, function(tweets) {
+
+            tweetList = tweetList.concat(tweets);
+
+            if(tweetList.length) {
+
+                var tweet = tweetList.shift(),
+                    tweetHtml = $(tweetTemplate.format(tweet.profile_image_url, 
+                                                tweet.username, tweet.text));
+
+                if(!tweetBox.is(':visible')){
+                    tweetBox.html(tweetHtml);
+                    tweetBox.slideDown();
+                } else {
+                    tweetHtml.hide();
+                    tweetBox.children().fadeOut(1000, function(){
+                        tweetBox.html(tweetHtml);
+                        tweetHtml.fadeIn(); 
+                    });
+                }
+
+            } else {
+
+                tweetBox.slideUp();
+
+            }
+            
+        });
+
     });
 })(jQuery, 'deck');
 

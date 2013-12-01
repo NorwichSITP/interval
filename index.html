@@ -103,6 +103,9 @@
         <section class="slide" id="apod">
         </section>
 
+        <div id="tweetbox">
+        </div>
+
         <script type="text/template" id="future-event-template">
             <section class="slide">
                 <h2>Upcoming Events</h2>
@@ -175,6 +178,14 @@
             </section>
         </script>
 
+        <script type="text/template" id="tweet-template">
+            <div class="tweet">
+                <img src="{0}" />
+                <span>{1}</span>
+                <p>{2}</p>
+            </div>
+        </script>
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type="text/javascript">
@@ -190,6 +201,9 @@
 
         <!-- Google Sheets importer -->
         <script src="media/js/gsheet.js"></script>
+
+        <!-- LiveTweet feed -->
+        <script src="media/js/tweetstream.js"></script>
 
         <!-- Specific to this deck -->
         <script src="media/js/sitp.js"></script>
