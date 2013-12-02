@@ -149,15 +149,26 @@
   border-top: 1px solid #fff;
   bottom: 0;
   display: none;
-  height: 12rem;
-  padding: 2rem;
+  height: 16rem;
+  margin: 0;
+  padding: 0;
   position: fixed;
   width: 100%;
   z-index: 10; }
-  #tweetbox img {
-    float: left;
-    height: 12rem;
-    margin: 0;
-    margin-right: 2rem; }
-  #tweetbox p {
-    margin: 0; }
+  #tweetbox .tweet {
+    padding: 2rem; }
+    #tweetbox .tweet img {
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      float: left;
+      height: 12rem;
+      margin-right: 2rem; }
+    #tweetbox .tweet span {
+      font-size: 4rem;
+      text-decoration: underline; }
+      #tweetbox .tweet span:before {
+        content: '@'; }
+    #tweetbox .tweet p {
+      font-size: 3rem;
+      margin: 0; }
