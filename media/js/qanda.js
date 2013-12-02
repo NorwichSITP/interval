@@ -62,7 +62,7 @@ String.prototype.format = function() {
                 }
             });
         
-        }, 3000);
+        }, 15000);
 
     });
 })(jQuery);
