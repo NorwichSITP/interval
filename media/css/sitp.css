@@ -155,20 +155,21 @@
   position: fixed;
   width: 100%;
   z-index: 10; }
-  #tweetbox .tweet {
-    padding: 2rem; }
-    #tweetbox .tweet img {
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      border-radius: 5px;
-      float: left;
-      height: 12rem;
-      margin-right: 2rem; }
-    #tweetbox .tweet span {
-      font-size: 4rem;
-      text-decoration: underline; }
-      #tweetbox .tweet span:before {
-        content: '@'; }
-    #tweetbox .tweet p {
-      font-size: 3rem;
-      margin: 0; }
+
+.tweet {
+  padding: 2rem; }
+  .tweet img {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    float: left;
+    height: 12rem;
+    margin: 0 2rem 0 0; }
+  .tweet span {
+    font-size: 4rem;
+    text-decoration: underline; }
+    .tweet span:before {
+      content: '@'; }
+  .tweet p {
+    font-size: 3rem;
+    margin: 0; }

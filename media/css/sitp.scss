@@ -237,34 +237,33 @@
     position: fixed;
     width: 100%;
     z-index: 10;
+}
 
-    .tweet {
+.tweet {
 
-        padding: 2rem;
+    padding: 2rem;
 
-        img {
-            @include border-radius(5px);
-            float:left;
-            height: 12rem;
-            margin-right: 2rem;
+    img {
+        @include border-radius(5px);
+        float:left;
+        height: 12rem;
+        margin: 0 2rem 0 0;
+    }
+
+    span {
+
+        font-size: 4rem;
+        text-decoration: underline;
+
+        &:before {
+            content: '@';
         }
 
-        span {
+    }
 
-            font-size: 4rem;
-            text-decoration: underline;
-
-            &:before {
-                content: '@';
-            }
-
-        }
-
-        p {
-            font-size: 3rem;
-            margin: 0;
-        }
-
+    p {
+        font-size: 3rem;
+        margin: 0;
     }
 
 }
