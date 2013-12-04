@@ -9,6 +9,12 @@ String.prototype.format = function() {
 
     $(function() {
 
+        $(document).off('keydown.nav').on('keydown.nav', function(e) {
+            if(e.which === 80 && !e.ctrlKey){
+                window.location.href = '..';
+            }
+        });
+
         $('body').on('click', '.tweet', function(e) {
             e.preventDefault();
             $(this).slideUp(function(){
