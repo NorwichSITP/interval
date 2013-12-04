@@ -135,11 +135,12 @@
     margin: 3rem 3rem 3rem 600px; }
 
 .sof a {
-  font-family: 'Ubuntu Mono', sans-serif;
   display: block;
+  font-family: 'Ubuntu Mono', sans-serif;
+  font-size: 6rem;
+  margin: 3rem;
   text-align: center;
-  text-decoration: underline;
-  margin: 3rem; }
+  text-decoration: underline; }
   .sof a img {
     height: 50rem;
     width: 50rem; }
