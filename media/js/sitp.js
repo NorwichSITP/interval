@@ -82,7 +82,7 @@
                         automatic: {
                             startRunning: getUrlParam('auto') != 'false',
                             cycle: true,
-                            slideDuration: 30000
+                            slideDuration: 60000
                         }
                     });
 
