@@ -48,20 +48,6 @@
 
     $(function() {
 
-        $(document).off('keydown.nav').on('keydown.nav', function(e) {
-            if (!e.ctrlKey) {
-                switch (e.which) {
-                    case 81:
-                        window.location.href = './qanda';
-                        break;
-
-                    case 83:
-                        window.location.href = './sof';
-                        break;
-                }
-            }
-        });
-
         $(document).bind('deck.init', function() {
             // So we can hide slides until they're all loaded
             $('.slide').addClass('loaded');

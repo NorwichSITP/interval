@@ -13,3 +13,22 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 
 ga('create', 'UA-46200679-2', 'norwichsitp.github.io');
 ga('send', 'pageview');
+
+
+$(document).off('keydown.nav').on('keydown.nav', function(e) {
+    if (!e.ctrlKey) {
+        switch (e.which) {
+            case 80:
+                window.location.href = '/interval';
+                break;
+
+            case 81:
+                window.location.href = '/interval/qanda';
+                break;
+
+            case 83:
+                window.location.href = '/interval/sof';
+                break;
+        }
+    }
+});
