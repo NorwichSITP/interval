@@ -8,11 +8,10 @@
             return false;
         });
 
-        var gSheetId = '0Ah6N8zTBBmsmdE02ZXM2NHpNTmFZYWkydXdhYV9Jb3c',
-            sofTemplate = $('#sof-template').html(),
+        var sofTemplate = $('#sof-template').html(),
             insertAfter = $('h2');
 
-        gSheet(gSheetId, function(rows){
+        gSheet(GSHEETID, function(rows){
 
             // Remove first two items - 0th item will always be empty because
             // Gsheets is 1-indexed, and the 1st item is the column headings

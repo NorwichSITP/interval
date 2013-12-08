@@ -10,12 +10,11 @@
             return false;
         });
 
-        var userKey = 'TmBELpRE1fSw',
-            tweetTemplate = $('#tweet-template').html(),
+        var tweetTemplate = $('#tweet-template').html(),
             body = $('body'),
             displayedTweets = {};
 
-        tweetStream(userKey, function(newTweets, currentTweets) {
+        tweetStream(LIVETWEET_USERKEY, function(newTweets, currentTweets) {
 
             var timeStamp = new Date().getTime();
 

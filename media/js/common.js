@@ -1,3 +1,7 @@
+var GSHEETID            = '0Ah6N8zTBBmsmdE02ZXM2NHpNTmFZYWkydXdhYV9Jb3c',
+    LIVETWEET_USERKEY   = 'TmBELpRE1fSw';
+
+
 String.prototype.format = function() {
     var args = arguments;
     return this.replace(/{(\d+)}/g, function(match, number) { 

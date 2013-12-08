@@ -226,14 +226,13 @@
 
 
         // SCIENCE OR FICTION ==================================================
-        var gSheetId = '0Ah6N8zTBBmsmdE02ZXM2NHpNTmFZYWkydXdhYV9Jb3c',
-            sofTemplate = $('#sof-template').html(),
+        var sofTemplate = $('#sof-template').html(),
             instructionsTemplate = $('#sof-instructions-template').html(),
             answersTemplate = $('#sof-answers-template').html(),
             lastQuote = $('.quote').last(),
             insertAfter = lastQuote;
 
-        gSheet(gSheetId, function(rows){
+        gSheet(GSHEETID, function(rows){
 
             // Remove first two items - 0th item will always be empty because
             // Gsheets is 1-indexed, and the 1st item is the column headings
@@ -256,12 +255,11 @@
 
 
         // TWEETS ==============================================================
-        var userKey = 'TmBELpRE1fSw',
-            tweetTemplate = $('#tweet-template').html(),
+        var tweetTemplate = $('#tweet-template').html(),
             tweetBox = $('#tweetbox'),
             tweetList = new Array();
 
-        tweetStream(userKey, function(tweets) {
+        tweetStream(LIVETWEET_USERKEY, function(tweets) {
 
             tweetList = tweetList.concat(tweets);
 
