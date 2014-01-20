@@ -195,6 +195,16 @@
         });
 
 
+        // BOOKS ===============================================================
+        
+        var hideBooks = Boolean(getUrlParam('hidebooks')),
+            bookSlide = $('#books');
+
+        if (hideBooks) {
+            bookSlide.remove();
+        }
+
+
         // APOD ================================================================
 
         var apods = new Array(),
