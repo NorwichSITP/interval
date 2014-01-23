@@ -235,7 +235,19 @@
         });
 
 
+        // BOXCAR ==============================================================
+
+        var showBoxcar = Boolean(getUrlParam('boxcar')),
+            boxcarTemplate = $('#boxcar-template').html(),
+            boxcarSlide = $(boxcarTemplate);
+
+        if (showBoxcar) {
+            apodSlide.after(boxcarSlide);
+        }
+
+
         // SCIENCE OR FICTION ==================================================
+
         var sofTemplate = $('#sof-template').html(),
             instructionsTemplate = $('#sof-instructions-template').html(),
             answersTemplate = $('#sof-answers-template').html(),

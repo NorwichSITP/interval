@@ -30,6 +30,15 @@
     display:none;
 }
 
+a.url {
+    display:block;
+    font-family: 'Ubuntu Mono', sans-serif;
+    font-size: 6rem;
+    margin: 3rem;
+    text-align: center;
+    text-decoration:underline;
+}
+
 #title{
 
     display:block;
@@ -208,21 +217,9 @@
 }
 
 .sof {
-
-    a {
-
-        display:block;
-        font-family: 'Ubuntu Mono', sans-serif;
-        font-size: 6rem;
-        margin: 3rem;
-        text-align: center;
-        text-decoration:underline;
-
-        img {
-            height: 50rem;
-            width: 50rem;
-        }
-
+    img {
+        height: 50rem;
+        width: 50rem;
     }
 }
 
@@ -266,4 +263,15 @@
         margin: 0;
     }
 
+}
+
+#boxcar {
+    iframe {
+        background: #fff;
+        border: none;
+        height: 410px;
+        margin: 0 auto;
+        overflow: hidden;
+        width: 810px;
+    }
 }

@@ -14,6 +14,14 @@
 .slide:not(.loaded) {
   display: none; }
 
+a.url {
+  display: block;
+  font-family: 'Ubuntu Mono', sans-serif;
+  font-size: 6rem;
+  margin: 3rem;
+  text-align: center;
+  text-decoration: underline; }
+
 #title {
   display: block; }
   #title:not(.loaded) h1 {
@@ -134,16 +142,9 @@
   .quote.einstein blockquote {
     margin: 3rem 3rem 3rem 600px; }
 
-.sof a {
-  display: block;
-  font-family: 'Ubuntu Mono', sans-serif;
-  font-size: 6rem;
-  margin: 3rem;
-  text-align: center;
-  text-decoration: underline; }
-  .sof a img {
-    height: 50rem;
-    width: 50rem; }
+.sof img {
+  height: 50rem;
+  width: 50rem; }
 
 #tweetbox {
   background: rgba(0, 0, 0, 0.9);
@@ -174,3 +175,11 @@
   .tweet p {
     font-size: 3rem;
     margin: 0; }
+
+#boxcar iframe {
+  background: #fff;
+  border: none;
+  height: 410px;
+  margin: 0 auto;
+  overflow: hidden;
+  width: 810px; }
