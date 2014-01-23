@@ -197,11 +197,13 @@
 
         // BOOKS ===============================================================
         
-        var hideBooks = Boolean(getUrlParam('hidebooks')),
-            bookSlide = $('#books');
+        var showBooks = Boolean(getUrlParam('books')),
+            bookTemplate = $('#book-template').html(),
+            firstQuote = $('.quote').first(),
+            bookSlide = $(bookTemplate);
 
-        if (hideBooks) {
-            bookSlide.remove();
+        if (showBooks) {
+            firstQuote.before(bookSlide);
         }
 
 
