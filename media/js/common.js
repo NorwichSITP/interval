@@ -23,15 +23,15 @@ $(document).off('keydown.nav').on('keydown.nav', function(e) {
     if (!e.ctrlKey) {
         switch (e.which) {
             case 80:
-                window.location.href = '/interval';
+                window.location.href = '/interval' + location.search;
                 break;
 
             case 81:
-                window.location.href = '/interval/qanda';
+                window.location.href = '/interval/qanda' + location.search;
                 break;
 
             case 83:
-                window.location.href = '/interval/sof';
+                window.location.href = '/interval/sof' + location.search;
                 break;
         }
     }
